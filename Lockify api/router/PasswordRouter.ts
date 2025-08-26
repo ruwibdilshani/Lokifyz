@@ -16,6 +16,41 @@ router.post('/save-password', async (req, res) => {
     }
 })
 
+router.put('/update-password', async (req, res) => {
+    const password : Passwords = req.body
+    try{
+        const updatedPassword = await update(password)
+        console.log("password updated : " , updatedPassword)
+        res.status(201).json(updatedPassword)
+    } catch (error){
+        console.log("error on update password : " , error)
+        res.status(500).json(error)
+    }
+})
+
+router.delete('/delete-password/:id', async (req, res) => {
+    const id = parseInt(req.params.id)
+    try{
+        const deletedPassword = await deletePassword(id)
+        console.log("password deleted : " , deletedPassword)
+        res.status(201).json(deletedPassword)
+    } catch (error){
+        console.log("error on delete password : " , error)
+        res.status(500).json(error)
+    }
+})
+
+router.get('/get-passwords/:userId', async (req, res) => {
+    const userId = req.params.userId
+    try{
+        const passwords = await getPasswords(userId)
+        console.log("passwords : " , passwords)
+        res.status(200).json(passwords)
+    } catch (error){
+        console.log("error on get passwords : " , error)
+        res.status(500).json(error)
+    }
+})
 
 
 export default router;
