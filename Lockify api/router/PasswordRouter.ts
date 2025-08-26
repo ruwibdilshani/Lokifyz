@@ -52,5 +52,16 @@ router.get('/get-passwords/:userId', async (req, res) => {
     }
 })
 
+router.get('/get-password/:id', async (req, res) => {
+    const id = parseInt(req.params.id)
+    try{
+        const password = await getPasswordById(id)
+        console.log("password : " , password)
+        res.status(200).json(password)
+    } catch (error){
+        console.log("error on get password : " , error)
+        res.status(500).json(error)
+    }
+})
 
 export default router;
