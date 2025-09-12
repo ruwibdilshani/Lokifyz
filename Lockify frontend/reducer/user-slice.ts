@@ -23,7 +23,7 @@ const initialState: {
 }
 
 const api = axios.create({
-    baseURL: "http://192.168.8.103:5000"
+    baseURL: "http://192.168.89.196:5000"
 })
 
 const storeTokens = async (token: string, refreshToken: string, userEmail: string) => {
